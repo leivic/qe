@@ -33,7 +33,10 @@ export default {
     xData: {
       type: Array,
       required: true
-    }
+    },
+    title: {
+      type: String,
+    },
   },
   data() {
     return {
@@ -68,50 +71,50 @@ export default {
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
         title: {
-		  text:"各区域抽查过程符合率",
-		  textStyle:{
-			fontSize:22,
-			fontWeight: "normal",
-			fontFamily: "Courier New"
-			},
-		  left: "center",
-		},
-		tooltip: {
-		  trigger: "axis",
+		  text: this.title,
+		  textStyle: {
+            fontSize: 22,
+            fontWeight: 'normal',
+            fontFamily: 'Courier New'
+          },
+		  left: 'center'
+        },
+        tooltip: {
+		  trigger: 'axis',
 		  axisPointer: {
-		    type: "shadow",
-		  },
-		},//鼠标悬浮的提示框组件 
-		toolbox: {
+		    type: 'shadow'
+		  }
+        }, // 鼠标悬浮的提示框组件
+        toolbox: {
 		    feature: {
-			dataView: {show: true, readOnly: false},
-			magicType: {show: true, type: ['line', 'bar']},
-			restore: {show: true},
-			saveAsImage: {show: true}
+            dataView: { show: true, readOnly: false },
+            magicType: { show: true, type: ['line', 'bar'] },
+            restore: { show: true },
+            saveAsImage: { show: true }
 		    },
-		    right: "10%"
-		},
-		xAxis: {
+		    right: '10%'
+        },
+        xAxis: {
 		    type: 'category',
 		    data: this.xData,
 		    axisLabel: {
-			interval:0,//横轴信息全部显示
-			rotate:-50,//-30度角倾斜显示  
+            interval: 0, // 横轴信息全部显示
+            rotate: -50// -30度角倾斜显示
 		    }
-		},
-		yAxis: {
+        },
+        yAxis: {
 		    type: 'value',
 		    axisLabel: {
-			formatter: '{value}%',
+            formatter: '{value}%'
 		    }
-		},
-		series: [{
-		    data: this.chartData, //不加this 怎么取得到props里面的值呢
+        },
+        series: [{
+		    data: this.chartData, // 不加this 怎么取得到props里面的值呢
 		    type: 'bar',
-		    barCategoryGap: "1%",
-		    barWidth:20
-		}]//echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
-	      
+		    barCategoryGap: '1%',
+		    barWidth: 20
+        }]// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
+
       })
     }
   }

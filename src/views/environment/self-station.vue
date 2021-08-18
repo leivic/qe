@@ -9,17 +9,15 @@
     </el-row>
 
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-      <Chart :chart-data="chartDataone.ydata" :x-data="chartDataone.xdata" :title="chartDataone.title" />
+	<Chart height="500px" :chartData="chartData.ydata" :xData="chartData.xdata" :title="chartData.title" />
     </el-row>
 
-    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-      <Chart :chart-data="chartDatatwo.ydata" :x-data="chartDatatwo.xdata" :title="chartDatatwo.title" />
-    </el-row>
+    
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'// 使用vuex状态管理器
-import { fetchRandomProcess, fetchRandomProcessZone } from '@/api/qe'// 默认导出名称 导入 必须加{} 因为导出的时候 是分开导出的，所以引用的时候 要按需引用{}
+import { fetchSelfStation } from '@/api/qe'
 import SelectMonth from '@/components/SelectMonth'
 import Chart from './components/Chart'
 
@@ -30,29 +28,22 @@ export default {
   },
   data() {
     return {
-      chartDataone: {
+      chartData: {
         xdata: [],
-        ydata: [],
-        title: "各区域抽查过程符合率"
+	ydata: [],
+	title: "各区域自评工位符合率"
       },
-      chartDatatwo: {
-        xdata: [],
-        ydata: [],
-        title: "抽查过程符合率"
-      }
     }
   },
   created() {
-    fetchRandomProcess(this.month, this.chartDataone.xdata, this.chartDataone.ydata)
-    fetchRandomProcessZone(this.month, this.chartDatatwo.xdata, this.chartDatatwo.ydata)
+    fetchSelfStation(this.month,this.chartData.xdata,this.chartData.ydata)
   },
   computed: {
     ...mapGetters(['month'])// 使用VUEX状态管理器的getter方法，由此多了个getmonth的计算属性
   },
   watch: {
     month(newval) {
-      fetchRandomProcess(newval, this.chartDataone.xdata, this.chartDataone.ydata)
-      fetchRandomProcessZone(newval, this.chartDatatwo.xdata, this.chartDatatwo.ydata)
+	    fetchSelfStation(newval, this.chartData.xdata, this.chartData.ydata)
     }
   }
 }

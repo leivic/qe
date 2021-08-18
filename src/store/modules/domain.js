@@ -1,10 +1,10 @@
 const state = {
-  month: '2021-07'
+  zone: '冲压车间'
 }
 
 const mutations = {
-  CHANGE_MONTH: (state, month) => {
-    state.month = month
+  CHANGE_ZONE: (state, zone) => {
+    state.zone = zone
   }
 }
 

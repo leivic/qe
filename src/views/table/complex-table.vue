@@ -232,19 +232,19 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchList(this.listQuery).then(response => { //触发fetchlist方法 该方法是import导入 then()传入一个带参函数，参数是response 箭头函数
+      fetchList(this.listQuery).then(response => { // 触发fetchlist方法 该方法是import导入 then()传入一个带参函数，参数是response 箭头函数
         this.list = response.data.items
         this.total = response.data.total
 
         // Just to simulate the time of the request
-        setTimeout(() => { //代码运行到这儿，触发 setTimeout()，1. setTimeout被扔进eventTable里面，计时1.5秒正常执行 2. 
+        setTimeout(() => { // 代码运行到这儿，触发 setTimeout()，1. setTimeout被扔进eventTable里面，计时1.5秒正常执行 2.
           this.listLoading = false
         }, 1.5 * 1000)
       })
     },
     handleFilter() {
-      this.listQuery.page = 1 //事件触发时,data里面属性赋值
-      this.getList()//触发 getList方法
+      this.listQuery.page = 1 // 事件触发时,data里面属性赋值
+      this.getList()// 触发 getList方法
     },
     handleModifyStatus(row, status) {
       this.$message({

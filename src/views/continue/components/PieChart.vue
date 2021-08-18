@@ -45,7 +45,7 @@ export default {
       this.chart = echarts.init(this.$el, 'macarons')
 
       this.chart.setOption({
-	title: {
+        title: {
           text: 'Sgmw重庆分公司各质量内损占比',
           textStyle: {
             fontWeight: 'normal',
@@ -73,7 +73,7 @@ export default {
             data: [
               { value: 320, name: '1号' },
               { value: 240, name: '2号' },
-              { value: 149, name: '3号' },
+              { value: 149, name: '3号' }
             ],
             animationEasing: 'cubicInOut',
             animationDuration: 2600

@@ -41,7 +41,7 @@
 </template>
 
 <script>
-//导入模块子组件（非全局）
+// 导入模块子组件（非全局）
 import GithubCorner from '@/components/GithubCorner'
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
@@ -52,7 +52,7 @@ import TransactionTable from './components/TransactionTable'
 import TodoList from './components/TodoList'
 import BoxCard from './components/BoxCard'
 
-//定义模拟数据对象
+// 定义模拟数据对象
 const lineChartData = {
   newVisitis: {
     expectedData: [100, 120, 161, 134, 105, 160, 165],
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     handleSetLineChartData(type) {
-      this.lineChartData = lineChartData[type]//变量数组项的使用
+      this.lineChartData = lineChartData[type]// 变量数组项的使用
     }
   }
 }

@@ -1,18 +1,18 @@
 <template>
   <div class="app-container">
     <div class="filter-container"><!--上方工具栏容器-->
-      <div  style="width:400px" class="filter-item">
-        <span class="demonstration"></span>
+      <div style="width:400px" class="filter-item">
+        <span class="demonstration" />
         <el-date-picker
           v-model="value2"
           type="datetimerange"
           :shortcuts="shortcuts"
           range-separator="至"
           start-placeholder="开始日期"
-          end-placeholder="结束日期">
-        </el-date-picker>
-    </div>
-      
+          end-placeholder="结束日期"
+        />
+      </div>
+
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
@@ -27,7 +27,7 @@
       </el-button>
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         上传
-      </el-button> 
+      </el-button>
     </div>
 
     <el-table
@@ -45,42 +45,33 @@
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="层次" sortable="custom" width="100px" align="center">
-       
-      </el-table-column>
+      <el-table-column label="层次" sortable="custom" width="100px" align="center" />
       <el-table-column label="自动化率" min-width="140px" align="center">
-        <el-table-column label="2位数" min-width="70px" align="center">
-        </el-table-column>
-        <el-table-column label="全自动化2位数" min-width="70px" align="center">
-        </el-table-column> 
+        <el-table-column label="2位数" min-width="70px" align="center" />
+        <el-table-column label="全自动化2位数" min-width="70px" align="center" />
       </el-table-column>
-      <el-table-column label="质量特性" sortable="custom" width="110px" align="center">
-        
-      </el-table-column>
-      <el-table-column label="负责人" width="75px">
-        
-      </el-table-column>
+      <el-table-column label="质量特性" sortable="custom" width="110px" align="center" />
+      <el-table-column label="负责人" width="75px" />
       <el-table-column label="抽样量" align="center" width="200">
-        <el-table-column label="2021年" width="50"></el-table-column>
-        <el-table-column label="1月" width="50"></el-table-column>
-        <el-table-column label="2月" width="50"></el-table-column>
-        <el-table-column label="3月" width="50"></el-table-column>
+        <el-table-column label="2021年" width="50" />
+        <el-table-column label="1月" width="50" />
+        <el-table-column label="2月" width="50" />
+        <el-table-column label="3月" width="50" />
       </el-table-column>
       <el-table-column label="产量" class-name="status-col" width="150">
-         <el-table-column label="1月" width="50"></el-table-column>
-         <el-table-column label="2月" width="50"></el-table-column>
-         <el-table-column label="3月" width="50"></el-table-column> 
+        <el-table-column label="1月" width="50" />
+        <el-table-column label="2月" width="50" />
+        <el-table-column label="3月" width="50" />
       </el-table-column>
       <el-table-column label="实际状态" align="center" width="150" class-name="small-padding fixed-width">
-         <el-table-column label="2021年" width="50"></el-table-column>
-         <el-table-column label="1月" width="50"></el-table-column>
-         <el-table-column label="2月" width="50"></el-table-column>  
+        <el-table-column label="2021年" width="50" />
+        <el-table-column label="1月" width="50" />
+        <el-table-column label="2月" width="50" />
       </el-table-column>
     </el-table>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
-   
   </div>
 </template>
 

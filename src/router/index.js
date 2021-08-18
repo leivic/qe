@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-Vue.use(Router) //Vue.use()安装Router
+Vue.use(Router) // Vue.use()安装Router
 
 /* Layout */
 import Layout from '@/layout'
@@ -132,7 +132,6 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 
-
 export const asyncRoutes = [
 /*
 质量生态环境路由
@@ -166,7 +165,34 @@ export const asyncRoutes = [
           title: '抽查过程',
           roles: ['admin'] // or you can only set roles in sub nav
         }
-      }, 
+      },
+      {
+        path: 'self-station',
+        component: () => import('@/views/environment/self-station'),
+        name: 'self-station',
+        meta: {
+          title: '自评工位',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'random-station',
+        component: () => import('@/views/environment/random-station'),
+        name: 'random-station',
+        meta: {
+          title: '工位抽查',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'document-change',
+        component: () => import('@/views/environment/document-change'),
+        name: 'document-change',
+        meta: {
+          title: '文件修订',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
       {
         path: 'source-one',
         component: () => import('@/views/environment/source-one'),
@@ -175,7 +201,7 @@ export const asyncRoutes = [
           title: '数据源一'
           // if do not set roles, means: this page does not require permission
         }
-      },
+      }
     ]
   },
   /*
