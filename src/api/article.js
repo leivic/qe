@@ -1,6 +1,6 @@
-import request from '@/utils/request'
+import request from '@/utils/request' //request是request.js里面导出的service service应当是一个对象，而这里的request是很明显的函数 那么我只能猜测request里面的service就是一个函数对象
 
-export function fetchList(query) {
+export function fetchList(query) { //返回一个函数的调用 要清楚函数的调用和函数是不一样的 request被封装，import导入本地 
   return request({
     url: '/vue-element-admin/article/list',
     method: 'get',

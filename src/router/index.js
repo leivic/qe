@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-Vue.use(Router)
+Vue.use(Router) //Vue.use()安装Router
 
 /* Layout */
 import Layout from '@/layout'
@@ -74,6 +74,7 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
+    hidden: true,
     children: [
       {
         path: 'dashboard',
@@ -86,6 +87,7 @@ export const constantRoutes = [
   {
     path: '/documentation',
     component: Layout,
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -99,6 +101,7 @@ export const constantRoutes = [
     path: '/guide',
     component: Layout,
     redirect: '/guide/index',
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -128,7 +131,97 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
+
+
 export const asyncRoutes = [
+/*
+质量生态环境路由
+*/
+  {
+    path: '/environment',
+    component: Layout,
+    redirect: '/environment/self-process',
+    alwaysShow: true, // will always show the root menu
+    name: 'Environment',
+    meta: {
+      title: '质量生态环境',
+      icon: 'lock',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'self-process',
+        component: () => import('@/views/environment/self-process'),
+        name: 'self-process',
+        meta: {
+          title: '自评过程',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'random-process',
+        component: () => import('@/views/environment/random-process'),
+        name: 'random-process',
+        meta: {
+          title: '抽查过程',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      }, 
+      {
+        path: 'source-one',
+        component: () => import('@/views/environment/source-one'),
+        name: 'Source-one',
+        meta: {
+          title: '数据源一'
+          // if do not set roles, means: this page does not require permission
+        }
+      },
+    ]
+  },
+  /*
+  质量生态持续路由
+  */
+  {
+    path: '/continue',
+    component: Layout,
+    redirect: '/continue/chart',
+    alwaysShow: true, // will always show the root menu
+    name: 'Continue',
+    meta: {
+      title: '质量生态持续',
+      icon: 'lock',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'chart',
+        component: () => import('@/views/continue/chart'),
+        name: 'ChartContinue',
+        meta: {
+          title: '分析报表',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'source',
+        component: () => import('@/views/continue/source'),
+        name: 'SourceContinue',
+        meta: {
+          title: '数据源'
+          // if do not set roles, means: this page does not require permission
+        }
+      },
+      {
+        path: '/experience',
+        component: () => import('@/views/continue/experience'),
+        name: 'ExperienceContinue',
+        meta: {
+          title: '经验库',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
   {
     path: '/permission',
     component: Layout,
@@ -140,6 +233,7 @@ export const asyncRoutes = [
       icon: 'lock',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
+    hidden: true,
     children: [
       {
         path: 'page',
@@ -174,6 +268,7 @@ export const asyncRoutes = [
   {
     path: '/icon',
     component: Layout,
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -199,6 +294,7 @@ export const asyncRoutes = [
       title: 'Example',
       icon: 'el-icon-s-help'
     },
+    hidden: true,
     children: [
       {
         path: 'create',
@@ -225,6 +321,7 @@ export const asyncRoutes = [
   {
     path: '/tab',
     component: Layout,
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -244,6 +341,7 @@ export const asyncRoutes = [
       title: 'Error Pages',
       icon: '404'
     },
+    hidden: true,
     children: [
       {
         path: '401',
@@ -263,6 +361,7 @@ export const asyncRoutes = [
   {
     path: '/error-log',
     component: Layout,
+    hidden: true,
     children: [
       {
         path: 'log',
@@ -282,6 +381,7 @@ export const asyncRoutes = [
       title: 'Excel',
       icon: 'excel'
     },
+    hidden: true,
     children: [
       {
         path: 'export-excel',
@@ -317,6 +417,7 @@ export const asyncRoutes = [
     alwaysShow: true,
     name: 'Zip',
     meta: { title: 'Zip', icon: 'zip' },
+    hidden: true,
     children: [
       {
         path: 'download',
@@ -331,6 +432,7 @@ export const asyncRoutes = [
     path: '/pdf',
     component: Layout,
     redirect: '/pdf/index',
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -349,6 +451,7 @@ export const asyncRoutes = [
   {
     path: '/theme',
     component: Layout,
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -362,6 +465,7 @@ export const asyncRoutes = [
   {
     path: '/clipboard',
     component: Layout,
+    hidden: true,
     children: [
       {
         path: 'index',
@@ -374,6 +478,7 @@ export const asyncRoutes = [
 
   {
     path: 'external-link',
+    hidden: true,
     component: Layout,
     children: [
       {

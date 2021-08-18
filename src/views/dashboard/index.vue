@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <component :is="currentRole" />
+    <component :is="currentRole" /> <!--动态改变组件-->
   </div>
 </template>
 

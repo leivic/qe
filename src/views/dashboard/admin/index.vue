@@ -1,14 +1,14 @@
 <template>
   <div class="dashboard-editor-container">
-    <github-corner class="github-corner" />
+    <github-corner class="github-corner" /><!--右上角github组件-->
 
-    <panel-group @handleSetLineChartData="handleSetLineChartData" />
+    <panel-group @handleSetLineChartData="handleSetLineChartData" /><!--vue自定义事件-->
 
-    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
+    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
       <line-chart :chart-data="lineChartData" />
     </el-row>
 
-    <el-row :gutter="32">
+    <el-row :gutter="32"><!--三个图表组件 布局是elment-ui栅栏布局-->
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
           <raddar-chart />
@@ -26,7 +26,7 @@
       </el-col>
     </el-row>
 
-    <el-row :gutter="8">
+    <el-row :gutter="8"><!--三个组件-->
       <el-col :xs="{span: 24}" :sm="{span: 24}" :md="{span: 24}" :lg="{span: 12}" :xl="{span: 12}" style="padding-right:8px;margin-bottom:30px;">
         <transaction-table />
       </el-col>
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+//导入模块子组件（非全局）
 import GithubCorner from '@/components/GithubCorner'
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
@@ -51,6 +52,7 @@ import TransactionTable from './components/TransactionTable'
 import TodoList from './components/TodoList'
 import BoxCard from './components/BoxCard'
 
+//定义模拟数据对象
 const lineChartData = {
   newVisitis: {
     expectedData: [100, 120, 161, 134, 105, 160, 165],
@@ -90,7 +92,7 @@ export default {
   },
   methods: {
     handleSetLineChartData(type) {
-      this.lineChartData = lineChartData[type]
+      this.lineChartData = lineChartData[type]//变量数组项的使用
     }
   }
 }

@@ -11,6 +11,7 @@ const chartsRouter = {
     title: 'Charts',
     icon: 'chart'
   },
+  hidden: false,
   children: [
     {
       path: 'keyboard',
