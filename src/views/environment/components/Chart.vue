@@ -35,8 +35,8 @@ export default {
       required: true
     },
     title: {
-      type: String,
-    },
+      type: String
+    }
   },
   data() {
     return {

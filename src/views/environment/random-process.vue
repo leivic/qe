@@ -33,12 +33,12 @@ export default {
       chartDataone: {
         xdata: [],
         ydata: [],
-        title: "各区域抽查过程符合率"
+        title: '各区域抽查过程符合率'
       },
       chartDatatwo: {
         xdata: [],
         ydata: [],
-        title: "抽查过程符合率"
+        title: '抽查过程符合率'
       }
     }
   },

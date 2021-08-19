@@ -28,11 +28,11 @@ export default {
         value: '总装车间',
         label: '总装车间'
       }],
-      value: ""
+      value: ''
     }
-      },
-    watch: {
-      value(newval) {
+  },
+  watch: {
+    value(newval) {
 			 this.$store.commit('CHANGE_ZONE', newval)// 向状态管理器中存值
 		 }
 	 }

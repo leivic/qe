@@ -9,10 +9,9 @@
     </el-row>
 
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-	<Chart height="500px" :chartData="chartData.ydata" :xData="chartData.xdata" :title="chartData.title" />
+      <Chart height="500px" :chart-data="chartData.ydata" :x-data="chartData.xdata" :title="chartData.title" />
     </el-row>
 
-    
   </div>
 </template>
 <script>
@@ -31,12 +30,12 @@ export default {
       chartData: {
         xdata: [],
 	      ydata: [],
-	      title: "各区域抽查工位符合率"
-      },
+	      title: '各区域抽查工位符合率'
+      }
     }
   },
   created() {
-    fetchRandomStation(this.month,this.chartData.xdata,this.chartData.ydata)
+    fetchRandomStation(this.month, this.chartData.xdata, this.chartData.ydata)
   },
   computed: {
     ...mapGetters(['month'])// 使用VUEX状态管理器的getter方法，由此多了个getmonth的计算属性

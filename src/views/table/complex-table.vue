@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
-    <div class="filter-container"><!--上方工具栏容器-->
-      <el-input v-model="listQuery.title" placeholder="Title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" /><!--v-model双向绑定listQuery.title 键盘事件keyup 修饰符.enter.native 按下enter的时候触发handleFilter方法-->
+    <div class="filter-container">
+      <el-input v-model="listQuery.title" placeholder="Title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-select v-model="listQuery.importance" placeholder="Imp" clearable style="width: 90px" class="filter-item">
         <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
       </el-select>
@@ -14,9 +14,7 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         Search
       </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
-        Add
-      </el-button>
+     
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         Export
       </el-button>
@@ -232,19 +230,19 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchList(this.listQuery).then(response => { // 触发fetchlist方法 该方法是import导入 then()传入一个带参函数，参数是response 箭头函数
+      fetchList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
 
         // Just to simulate the time of the request
-        setTimeout(() => { // 代码运行到这儿，触发 setTimeout()，1. setTimeout被扔进eventTable里面，计时1.5秒正常执行 2.
+        setTimeout(() => {
           this.listLoading = false
         }, 1.5 * 1000)
       })
     },
     handleFilter() {
-      this.listQuery.page = 1 // 事件触发时,data里面属性赋值
-      this.getList()// 触发 getList方法
+      this.listQuery.page = 1
+      this.getList()
     },
     handleModifyStatus(row, status) {
       this.$message({
@@ -277,14 +275,6 @@ export default {
         status: 'published',
         type: ''
       }
-    },
-    handleCreate() {
-      this.resetTemp()
-      this.dialogStatus = 'create'
-      this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
-      })
     },
     createData() {
       this.$refs['dataForm'].validate((valid) => {

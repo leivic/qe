@@ -11,7 +11,7 @@ const tableRouter = {
     title: 'Table',
     icon: 'table'
   },
-  hidden: true,
+  hidden: false,
   children: [
     {
       path: 'dynamic-table',
