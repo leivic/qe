@@ -22,7 +22,7 @@
 import { mapGetters } from 'vuex'// 使用vuex状态管理器
 import SelectMonth from '@/components/SelectMonth'
 import DocumentChangeChart from './components/DocumentChangeChart'
-import { fetchDocumentChange,fetchDocumentChangeStatus } from '@/api/qe'
+import { fetchDocumentChange, fetchDocumentChangeStatus } from '@/api/qe'
 import DocumentChangeStatus from './components/DocumentChangeStatus'
 
 export default {
@@ -55,12 +55,12 @@ export default {
     fetchDocumentChangeStatus(this.month, this.documentstatus.ydata, this.documentstatus.buxiudindata, this.documentstatus.huagaidata, this.documentstatus.huanyedata, this.documentstatus.huanbandata, this.documentstatus.xinzengdata, this.documentstatus.chexiaodata)
   },
   computed: {
-    ...mapGetters([ 'month'])//
+    ...mapGetters(['month'])//
   },
   watch: {
     month(newval) {
 	   fetchDocumentChange(newval, this.document.ydata, this.document.wenjianjihuadata, this.document.wanchendata, this.document.gailvdata)
-     fetchDocumentChangeStatus(newval, this.documentstatus.ydata, this.documentstatus.buxiudindata, this.documentstatus.huagaidata, this.documentstatus.huanyedata, this.documentstatus.huanbandata, this.documentstatus.xinzengdata, this.documentstatus.chexiaodata)
+      fetchDocumentChangeStatus(newval, this.documentstatus.ydata, this.documentstatus.buxiudindata, this.documentstatus.huagaidata, this.documentstatus.huanyedata, this.documentstatus.huanbandata, this.documentstatus.xinzengdata, this.documentstatus.chexiaodata)
     }
   }
 }

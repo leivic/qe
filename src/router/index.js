@@ -171,6 +171,58 @@ export const asyncRoutes = [
       }
     ]
   },
+
+  /*质量生态意识路由*/
+  {
+    path: '/conscious',
+    component: Layout,
+    redirect: '/conscious/chart',
+    alwaysShow: true, // will always show the root menu
+    name: 'Conscious',
+    meta: {
+      title: '质量生态意识',
+      icon: 'lock',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'stationcover',
+        component: () => import('@/views/conscious/stationcover'),
+        name: 'Stationcover',
+        meta: {
+          title: '工位覆盖率',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'stationconscious',
+        component: () => import('@/views/conscious/stationconscious'),
+        name: 'Stationconscious',
+        meta: {
+          title: '工位质量生态意识状态'
+          // if do not set roles, means: this page does not require permission
+        }
+      },
+      {
+        path: 'variationpoint',
+        component: () => import('@/views/conscious/variationpoint'),
+        name: 'Variationpoint',
+        meta: {
+          title: '变化点',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'source-one',
+        component: () => import('@/views/conscious/source-one'),
+        name: 'Source-one',
+        meta: {
+          title: '数据源一'
+          // if do not set roles, means: this page does not require permission
+        }
+      },
+    ]
+  },
   /*
   质量生态持续路由
   */
@@ -182,7 +234,7 @@ export const asyncRoutes = [
     name: 'Continue',
     meta: {
       title: '质量生态持续',
-      icon: 'lock',
+      icon: 'chart',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
     children: [
@@ -258,12 +310,10 @@ export const asyncRoutes = [
     ]
   },
 
-
   /** when your routing map is too long, you can split it into small modules **/
   chartsRouter,
   tableRouter,
 
-  
   {
     path: '/error',
     component: Layout,
@@ -304,7 +354,6 @@ export const asyncRoutes = [
     ]
   },
 
-
   {
     path: '/theme',
     component: Layout,
@@ -318,7 +367,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
