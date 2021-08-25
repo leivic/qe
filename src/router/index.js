@@ -9,7 +9,7 @@ import Layout from '@/layout'
 /* Router Modules */
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
-
+import responsibilityRouter from './modules/responsibility'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -172,7 +172,7 @@ export const asyncRoutes = [
     ]
   },
 
-  /*质量生态意识路由*/
+  /* 质量生态意识路由*/
   {
     path: '/conscious',
     component: Layout,
@@ -220,7 +220,7 @@ export const asyncRoutes = [
           title: '数据源一'
           // if do not set roles, means: this page does not require permission
         }
-      },
+      }
     ]
   },
   /*
@@ -309,6 +309,8 @@ export const asyncRoutes = [
       }
     ]
   },
+/*质量生态责任路由*/
+  responsibilityRouter,
 
   /** when your routing map is too long, you can split it into small modules **/
   chartsRouter,

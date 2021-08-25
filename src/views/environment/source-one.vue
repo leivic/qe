@@ -164,7 +164,7 @@ export default {
 		    },
 
     handleDelete(row, index) { // 点击删除按钮的操作
-      this.$notify({ //封装的通知功能
+      this.$notify({ // 封装的通知功能
         title: 'Success',
         message: '删除成功',
         type: 'success',
