@@ -100,10 +100,12 @@ export default {
     async getRoutes() {
       const res = await getRoutes()
       this.serviceRoutes = res.data
+      console.log(res)
       this.routes = this.generateRoutes(res.data)
     },
     async getRoles() {
-      const res = await getRoles()
+      const res = await getRoles() // await后面一般跟promise
+      console.log(res)
       this.rolesList = res.data
     },
 

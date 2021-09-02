@@ -47,17 +47,14 @@ export default {
     chartData: {
       deep: true,
       handler(val) {
-        
         this.setOptions(val)
       }
     }
   },
   mounted() {
-    
     this.$nextTick(() => {
       this.initChart()
     })
-    
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -73,9 +70,9 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.showLoading({
-          maskColor:'white'//遮罩层背景色
-        })
-      
+        maskColor: 'white'// 遮罩层背景色
+      })
+
       this.chart.setOption({
         title: {
 		  text: this.title,
@@ -125,7 +122,7 @@ export default {
       })
 
       var that = this
-      setTimeout(function(){that.chart.hideLoading()},1500) //留出时间等待父组件内数据加载完毕 这里setTimeout方法的对象是window,如果直接使用this,指的是window对象
+      setTimeout(function() { that.chart.hideLoading() }, 1500) // 留出时间等待父组件内数据加载完毕 这里setTimeout方法的对象是window,如果直接使用this,指的是window对象
     }
   }
 }

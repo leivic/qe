@@ -323,6 +323,7 @@ export default {
       })
     },
     handleDelete(row, index) {
+      console.log(index)
       this.$notify({
         title: 'Success',
         message: 'Delete Successfully',

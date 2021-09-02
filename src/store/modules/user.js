@@ -10,7 +10,7 @@ const state = {
   roles: []
 }
 
-const mutations = {
+const mutations = { //mutations是同步存值的方法层
   SET_TOKEN: (state, token) => {
     state.token = token
   },
@@ -28,15 +28,15 @@ const mutations = {
   }
 }
 
-const actions = {
-  // user login
-  login({ commit }, userInfo) {
+const actions = { //actions层是异步存值的方法 
+  // 用户在login的首页 this.$store.dispatch('user/login', this.loginForm)后调用的store的方法
+  login({ commit }, userInfo) { //第二个参数值userInfo才是传过来的值，这个方法是特殊的，第一个参数是经过vuex封装过的
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      login({ username: username.trim(), password: password }).then(response => { //调用从api导入的login方法
         const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        commit('SET_TOKEN', data.token) //将token的值存在staten里面 
+        setToken(data.token) //调用从api导入的setToken方法 
         resolve()
       }).catch(error => {
         reject(error)

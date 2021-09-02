@@ -1,3 +1,4 @@
+<!--登录页页面组件-->
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
@@ -133,6 +134,7 @@ export default {
     } else if (this.loginForm.password === '') {
       this.$refs.password.focus()
     }
+    console.log(this.$route)
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
@@ -156,9 +158,9 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm)
+          this.$store.dispatch('user/login', this.loginForm)//dispatch是异步的添加方法,后面有.then()的回调函数  commit是同步的
             .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              this.$router.push({ path: this.redirect || '/', query: this.otherQuery }) //登录成功后跳转页面，提供参数 这里跳转首页，首页在router文件夹下面的index里面由路由定义
               this.loading = false
             })
             .catch(() => {

@@ -10,7 +10,7 @@
     </el-row>
 
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-	<Chart :chartData="vartiationpointchart.chartdata" :xData="vartiationpointchart.xdata" :title="vartiationpointchart.title" />
+      <Chart :chart-data="vartiationpointchart.chartdata" :x-data="vartiationpointchart.xdata" :title="vartiationpointchart.title" />
     </el-row>
 
   </div>
@@ -31,22 +31,22 @@ export default {
 	    vartiationpointchart: {
 		    chartdata: [],
 		    xdata: [],
-		    title: "变化点完成率"
+		    title: '变化点完成率'
 	    }
     }
   },
   created() {
-	 fetchlistvariationpoint(this.month,this.vartiationpointchart.chartdata,this.vartiationpointchart.xdata)
+	 fetchlistvariationpoint(this.month, this.vartiationpointchart.chartdata, this.vartiationpointchart.xdata)
   },
   computed: {
-    ...mapGetters(['month']), // vuex 封装的 相当于获得一个函数名为month的计算属性 还是带setter的
- 
+    ...mapGetters(['month']) // vuex 封装的 相当于获得一个函数名为month的计算属性 还是带setter的
+
   },
   watch: {
     month(newval) {
-	 fetchlistvariationpoint(newval,this.vartiationpointchart.chartdata,this.vartiationpointchart.xdata)
-    },
-    
+	 fetchlistvariationpoint(newval, this.vartiationpointchart.chartdata, this.vartiationpointchart.xdata)
+    }
+
   }
 }
 </script>

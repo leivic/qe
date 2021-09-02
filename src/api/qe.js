@@ -207,7 +207,7 @@ export function fetchDocumentChangeStatus(month, ydata, buxiudindata, huagaidata
   })
 }
 
-/*查询过程数据源api*/
+/* 查询过程数据源api*/
 export function fetchListGuoChen(pageNum, limit) {
   return request({
 	  url: 'http://localhost:8090/selectAllGuoChenFuHe',
@@ -257,10 +257,10 @@ export function fetchListzonestationcover(month, zone, xdata1, ydataone1, ydatat
   })
 }
 
-/*变化点api*/
+/* 变化点api*/
 export function fetchlistvariationpoint(month, chartdata, xdata) {
-  chartdata.splice(0,chartdata.length)
-  xdata.splice(0,chartdata.length)
+  chartdata.splice(0, chartdata.length)
+  xdata.splice(0, chartdata.length)
 
   request({
 	  url: 'http://localhost:8090/getBianHuaDianSecondData',
@@ -269,12 +269,12 @@ export function fetchlistvariationpoint(month, chartdata, xdata) {
   }).then(function(res) {
     for (const x of res) { // 调用函数时，传递的实参弱是个数组,就会一次次循环调用push方法增加元素
       xdata.push(x.fenLeiYiJu)
-      chartdata.push(x.percentage*100) 
+      chartdata.push(x.percentage * 100)
     }
   })
 }
 
-/*查询工位数据源api*/
+/* 查询工位数据源api*/
 export function fetchListGongwei(pageNum, limit) {
   return request({
 	  url: 'http://localhost:8090/selectAllGongWeiFuHe',

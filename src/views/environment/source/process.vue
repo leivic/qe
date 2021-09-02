@@ -84,8 +84,8 @@
       </el-table-column>
 
       <el-table-column label="#" width="100px" align="center">
-        <template slot-scope="{row}">
-          <el-button size="mini" type="danger" @click="handleDelete(row,$index)">
+        <template slot-scope="{row}"> <!--作用域插槽-->
+          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)">
             Delete
           </el-button>
         </template>
@@ -98,6 +98,7 @@
 
 <script>
 import { fetchListGuoChen } from '@/api/qe'
+import { deletGuoChen } from '@/api/update'
 import Pagination from '@/components/Pagination'// 分页组件
 
 export default {
@@ -122,13 +123,13 @@ export default {
     }
   },
   created() {
+   
     this.getList()
   },
   methods: {
     getList() { // 获取数据
       this.listLoading = true
       fetchListGuoChen(this.listQuery.page, this.listQuery.limit).then(response => {
-        console.log(response)
         this.list = response // 获取真正的sql查询出来的数据
         // Just to simulate the time of the request
         setTimeout(() => {
@@ -163,7 +164,7 @@ export default {
       			return sort === `+${key}` ? 'ascending' : 'descending'
 		    },
 
-    handleDelete(row, index) { // 点击删除按钮的操作
+    handleDelete(row, index, id) { // 点击删除按钮的操作 形参
       this.$notify({ // 封装的通知功能
         title: 'Success',
         message: '删除成功',
@@ -171,7 +172,11 @@ export default {
         duration: 2000
       })
       this.list.splice(index, 1)// data property里面的数据更新，视图即更新
-    }
+      deletGuoChen(id) 
+    },
+
+     
+
 
   }
 }

@@ -56,7 +56,7 @@ const actions = {
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
       }
       commit('SET_ROUTES', accessedRoutes)
-      resolve(accessedRoutes)
+      resolve(accessedRoutes) //解析返回一个promise对象，传给后面的参数是accessedRoutes
     })
   }
 }

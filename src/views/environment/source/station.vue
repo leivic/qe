@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-	    <!--后端导入工位服务-->
+      <!--后端导入工位服务-->
       <el-upload
-        action="http://localhost:8090/exportGongWeiFuHe" 
+        action="http://localhost:8090/exportGongWeiFuHe"
         multiple
         :limit="3"
       >
@@ -24,8 +24,8 @@
       @sort-change="sortChange"
     > <!--el-table的数据配置处是 :data-->
       <el-table-column label="ID" prop="id" sortable="custom" align="center" width="60" :class-name="getSortClass('id')">
-        <template slot-scope="{row}">
-          <span>{{ row.id }}</span><!--row是封装的datalist对象-->
+        <template slot-scope="{row}"> <!--slot-scope是作用域插槽 意味着父组件提供样式就好，不用提供内容，内容由子组件内绑定的数据来提供 默认插槽和具名插槽子组件都是父组件又提供数据，又提供内容-->
+          <span>{{ row.id }}</span><!--row是在此处自命名的,row其实是:data＝“list” 绑定的list数据,list是个数组-->
         </template>
       </el-table-column>
 
@@ -84,8 +84,8 @@
       </el-table-column>
 
       <el-table-column label="#" width="100px" align="center">
-        <template slot-scope="{row}">
-          <el-button size="mini" type="danger" @click="handleDelete(row,$index)">
+        <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了--> 
+          <el-button size="mini" type="danger" @click="handleDelete(row,$index,row.id)">
             Delete
           </el-button>
         </template>
@@ -98,6 +98,7 @@
 
 <script>
 import { fetchListGongwei } from '@/api/qe'
+import { deletGongWei } from '@/api/update'
 import Pagination from '@/components/Pagination'// 分页组件
 
 export default {
@@ -128,7 +129,6 @@ export default {
     getList() { // 获取数据
       this.listLoading = true
       fetchListGongwei(this.listQuery.page, this.listQuery.limit).then(response => {
-        console.log(response)
         this.list = response // 获取真正的sql查询出来的数据
         // Just to simulate the time of the request
         setTimeout(() => {
@@ -163,7 +163,7 @@ export default {
       			return sort === `+${key}` ? 'ascending' : 'descending'
 		    },
 
-    handleDelete(row, index) { // 点击删除按钮的操作
+    handleDelete(row, index, id) { // 点击删除按钮的操作
       this.$notify({ // 封装的通知功能
         title: 'Success',
         message: '删除成功',
@@ -171,6 +171,7 @@ export default {
         duration: 2000
       })
       this.list.splice(index, 1)// data property里面的数据更新，视图即更新
+      deletGongWei(id)
     }
 
   }

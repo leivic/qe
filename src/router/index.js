@@ -96,7 +96,7 @@ export const asyncRoutes = [
 */
   {
     path: '/environment',
-    component: Layout,
+    component: Layout, //这个layout相当关键
     redirect: '/environment/self-process',
     alwaysShow: true, // will always show the root menu
     name: 'Environment',
@@ -146,28 +146,33 @@ export const asyncRoutes = [
         path: 'document-change',
         component: () => import('@/views/environment/document-change'),
         name: 'document-change',
-        meta: {
+        meta: { //元数据
           title: '文件修订',
           roles: ['admin'] // or you can only set roles in sub nav
         }
       },
       {
-        path: 'source-one',
-        component: () => import('@/views/environment/source-one'),
-        name: 'Source-one',
-        meta: {
-          title: '数据源一'
-          // if do not set roles, means: this page does not require permission
-        }
-      },
-      {
-        path: 'source-two',
-        component: () => import('@/views/environment/source-two'),
-        name: 'Source-two',
-        meta: {
-          title: '数据源二'
-          // if do not set roles, means: this page does not require permission
-        }
+        path: 'source',
+        name: 'source',
+        redirect: '@/views/environment/source/process',
+        meta: { title: '数据源' },
+        component:  () => import('@/views/environment/source'),  
+        children: [
+          {
+            path: 'process',
+            component: () => import('@/views/environment/source/process'),//组件是一个个单独的 在同一个spa里面,这里是点击后，source组件和process组件都在
+            name: 'process',
+            meta: { title: '过程信息',
+                    roles: ['admin']    
+            }
+          },
+          {
+            path: 'station',
+            component: () => import('@/views/environment/source/station'),
+            name: 'station',
+            meta: { title: '工位信息' }
+          },
+        ]
       }
     ]
   },
@@ -213,13 +218,29 @@ export const asyncRoutes = [
         }
       },
       {
-        path: 'source-one',
-        component: () => import('@/views/conscious/source-one'),
-        name: 'Source-one',
-        meta: {
-          title: '数据源一'
-          // if do not set roles, means: this page does not require permission
-        }
+        path: 'source',
+        name: 'source',
+        redirect: '@/views/conscious/source/process',
+        meta: { title: '数据源' },
+        component:  () => import('@/views/conscious/source'),  
+        children: [
+          {
+            path: 'stationcover',
+            component: () => import('@/views/conscious/source/stationcover'),//组件是一个个单独的 在同一个spa里面,这里是点击后，source组件和process组件都在
+            name: 'stationcover',
+            meta: { title: '工位覆盖率',
+                    roles: ['admin']    
+            }
+          },
+          {
+            path: 'variationpoint',
+            component: () => import('@/views/conscious/source/variationpoint'),//组件是一个个单独的 在同一个spa里面,这里是点击后，source组件和process组件都在
+            name: 'variationpoint',
+            meta: { title: '变化点',
+                    roles: ['admin']    
+            }
+          }
+        ]
       }
     ]
   },
@@ -278,7 +299,7 @@ export const asyncRoutes = [
       icon: 'lock',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
-    hidden: true,
+    hidden: false,
     children: [
       {
         path: 'page',
@@ -309,13 +330,14 @@ export const asyncRoutes = [
       }
     ]
   },
-/*质量生态责任路由*/
+  /* 质量生态责任路由*/
   responsibilityRouter,
 
   /** when your routing map is too long, you can split it into small modules **/
   chartsRouter,
   tableRouter,
 
+  
   {
     path: '/error',
     component: Layout,
@@ -365,7 +387,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/theme/index'),
         name: 'Theme',
-        meta: { title: 'Theme', icon: 'theme' }
+        meta: { title: 'Theme', icon: 'bug' }
       }
     ]
   },

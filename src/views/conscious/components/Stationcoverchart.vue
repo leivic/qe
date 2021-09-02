@@ -75,9 +75,9 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.showLoading({
-          maskColor:'white'//遮罩层背景色
-        })
-        
+        maskColor: 'white'// 遮罩层背景色
+      })
+
       this.chart.setOption({
         title: {
           text: this.title,
@@ -148,7 +148,7 @@ export default {
       })
 
       var that = this
-      setTimeout(function(){that.chart.hideLoading()},1500)
+      setTimeout(function() { that.chart.hideLoading() }, 1500)
     }
   }
 }
